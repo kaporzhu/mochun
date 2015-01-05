@@ -52,3 +52,15 @@ docs/_build/
 
 # PyBuilder
 target/
+
+# sublime project file
+mochun.sublime-workspace
+mochun.sublime-project
+
+# pydev project file
+.project
+.pydevproject
+.settings
+
+# local project file
+local_settings.py
