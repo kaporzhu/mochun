@@ -5,7 +5,7 @@
 {% include "portals/head.html" %}
 <div class="container">
     <div class="row">
-        <div class="col-md-1">
+        <div class="col-md-2 text-center">
             <ul class="list-unstyled">
                 {% for album in albums %}
                 <li>
@@ -15,7 +15,7 @@
                 {% endfor %}
             </ul>
         </div>
-        <div id="album-works" class="col-md-11">
+        <div id="album-works" class="col-md-10 text-center">
             {% include "works/album_works.html" with object_list=works %}
         </div>
     </div>

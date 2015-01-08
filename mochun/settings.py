@@ -39,6 +39,7 @@ INSTALLED_APPS = (
 
     # 3rd apps
     'easy_thumbnails',
+    'compressor',
 
     # local apps
     'mochun',
@@ -111,6 +112,13 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/static/media/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'mochun', 'static')
 MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
+
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    # other finders..
+    'compressor.finders.CompressorFinder',
+)
 
 try:
     from local_settings import *  # noqa

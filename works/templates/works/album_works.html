@@ -1,8 +1,8 @@
 {% load thumbnail %}
 {% for work in object_list %}
 <div>
-    <img class="img-responsive" src="{{ work.image|thumbnail_url:'large' }}" />
+    <img src="{{ work.image|thumbnail_url:'large' }}" /><br /><br />
     <p>{{ work.description }}</p>
-    <hr />
+    <br /><br /><br />
 </div>
 {% endfor %}
