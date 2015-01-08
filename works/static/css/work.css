@@ -1,0 +1,63 @@
+#albums>li {
+    width: 270px;
+    border: 2px solid #e1e1e8;
+    border-radius: 6px;
+    margin: 10px;
+    padding: 0;
+    vertical-align: top;
+}
+
+
+.works>li {
+    padding: 5px;
+    border-bottom: 1px solid #e1e1e8;
+}
+
+.works li.head {
+    padding: 5;
+    margin: 0;
+    border-radius: 5px 5px 0 0;
+    background-color: #e1e1e8;
+    color: #333;
+    opacity: 1;
+}
+
+.works .ui-helper {
+    background-color: #f7f7f9;
+}
+
+.operations {
+    visibility: hidden;
+}
+
+.album .head:hover .operations {
+    visibility: visible;
+}
+
+.work:hover .operations {
+    visibility: visible;
+}
+
+.works .operations li a {
+    font-size: 14px;
+}
+
+.glyphicon-eye-open {
+    color: green;
+}
+
+.glyphicon-eye-close {
+    color: gray;
+}
+
+.glyphicon-remove {
+    color: red;
+}
+
+.works .work>ul li {
+    vertical-align: middle;
+}
+
+.ui-state-highlight {
+    height: 100px;
+}

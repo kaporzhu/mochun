@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load thumbnail %}
+
+{% block body %}
+{% include "portals/head.html" %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-1">
+            <ul class="list-unstyled">
+                {% for album in albums %}
+                <li>
+                    <img title="{{ album.name }}" data-url="{% url 'works:album_works' %}?id={{ album.id }}" class="album-icon" width="25px" src="{{ album.icon|thumbnail_url:'small' }}" />
+                    <br /><br />
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div id="album-works" class="col-md-11">
+            {% include "works/album_works.html" with object_list=works %}
+        </div>
+    </div>
+</div>
+<div class="navbar-fixed-bottom text-right white">Powered by kapor.zhu@gmail.com <a class="white" href="{% if not user.is_superuser %}/admin/login/?next={% endif %}{% url 'works:list' %}">后台</a></div>
+{% endblock %}

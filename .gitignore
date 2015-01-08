@@ -64,3 +64,4 @@ mochun.sublime-project
 
 # local project file
 local_settings.py
+mochun/static/media

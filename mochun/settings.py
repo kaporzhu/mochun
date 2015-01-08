@@ -36,6 +36,14 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # 3rd apps
+    'easy_thumbnails',
+
+    # local apps
+    'mochun',
+    'portals',
+    'works',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -52,6 +60,9 @@ ROOT_URLCONF = 'mochun.urls'
 
 WSGI_APPLICATION = 'mochun.wsgi.application'
 
+SOUTH_MIGRATION_MODULES = {
+    'easy_thumbnails': 'easy_thumbnails.south_migrations',
+}
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -60,6 +71,20 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+THUMBNAIL_ALIASES = {
+    '': {
+        'small': {
+            'size': (256, 256)
+        },
+        'medium': {
+            'size': (512, 512)
+        },
+        'large': {
+            'size': (1024, 1024)
+        },
     }
 }
 
@@ -81,6 +106,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
+MEDIA_URL = '/static/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'mochun', 'static')
+MEDIA_ROOT = os.path.join(STATIC_ROOT, 'media')
 
 try:
     from local_settings import *  # noqa

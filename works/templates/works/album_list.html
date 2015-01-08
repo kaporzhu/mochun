@@ -1,0 +1,56 @@
+{% extends "page.html" %}
+{% load thumbnail static mochun_template_tags %}
+
+{% block extracss %}
+<link media="screen" rel="stylesheet" href="http://libs.useso.com/js/jqueryui/1.10.4/css/jquery-ui.min.css">
+<link media="screen" rel="stylesheet" href="{% static 'css/work.css' %}">
+{% endblock %}
+
+{% block extrajs %}
+<script src="http://libs.useso.com/js/jqueryui/1.10.4/jquery-ui.min.js"></script>
+<script src="{% static 'js/work.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<ul class="list-inline" id="albums" data-url="{% url 'works:change_album_order' %}" style="width: {{ object_list|length|mult:'300' }}px;">
+    {% for album in object_list %}
+    <li data-id="{{ album.id }}" class="album">
+        <ul class="list-unstyled works" data-id="{{ album.id }}" data-url="{% url 'works:change_work_order' %}">
+            <li class="ui-state-disabled head">
+                <img width="50px" src="{{ album.icon|thumbnail_url:'small' }}" />
+                <b>{{ album.name }}</b>
+                <span class="pull-right operations">
+                    <a href="{% url 'works:update_album' pk=album.id %}" title="修改专辑信息"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="javascript:void(0)" data-url="{% url 'works:delete_album' pk=album.id %}" title="删除专辑" class="confirm" data-confirm="删除专辑，会删除专辑里所有的作品，慎重啊，老潘。确定删除？"><span class="glyphicon glyphicon-remove"></span></a>
+                </span>
+            </li>
+            {% for work in album.works %}
+            <li data-id="{{ work.id }}" class="work">
+                <ul class="list-inline">
+                    <li><img width="70px" src="{{ work.image|thumbnail_url:'small' }}" /></li>
+                    <li>
+                        <div>
+                            {% if work.visible %}
+                            <a href="javascript:void(0)" class="toggle-work" title="显示/隐藏" data-url="{% url 'works:toggle' pk=work.id %}"><span class="glyphicon glyphicon-eye-open"></span></a>&nbsp;&nbsp;
+                            {% else %}
+                            <a href="javascript:void(0)" class="toggle-work" title="显示/隐藏" data-url="{% url 'works:toggle' pk=work.id %}"><span class="glyphicon glyphicon-eye-close"></span></a>&nbsp;&nbsp;
+                            {% endif %}
+                            {{ work.description }}
+                        </div><br />
+                        <span class="operations">
+                            <a href="{% url 'works:update' pk=work.id %}" title="修改"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <a href="javascript:void(0)" data-url="{% url 'works:delete' pk=work.id %}" data-confirm="真的要删除这幅作品？" class="confirm" title="删除"><span class="glyphicon glyphicon-remove"></span></a>
+                        </span>
+                    </li>
+                </ul>
+                <div class="masking"></div>
+            </li>
+            {% endfor %}
+            <li class="ui-state-disabled">
+                <a href="{% url 'works:create' %}?album_id={{ album.id }}">添加新作品</a>
+            </li>
+        </ul>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
